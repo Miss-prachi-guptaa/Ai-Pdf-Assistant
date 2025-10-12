@@ -56,14 +56,14 @@ cd ../server
 npm install
 ```
 ### Create .env file in server folder
-PORT=5000
+PORT=5000 
 GEMINI_API_KEY=your_gemini_api_key
 MURF_API_KEY=your_murf_api_key
 
-Start backend
-cd server
-npm run dev
+### Start backend
+- cd server
+- run dev
 
-Start Client
-cd client
-npm run dev
+### Start Client
+-cd client
+-npm run dev
