@@ -1,0 +1,13 @@
+/* ===== MINIMAL FOOTER ===== */
+.footer {
+  width: 100%;
+  background: rgba(18, 18, 25, 0.95);
+  /* dark background to match header */
+  backdrop-filter: blur(12px);
+  padding: 20px 0;
+  text-align: center;
+  color: #c4c4c4;
+  /* soft gray text */
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  font-size: 0.9rem;
+}

@@ -1,0 +1,68 @@
+/* Container for login/signup/dashboard */
+.auth-container,
+.dashboard-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #0b5ed7, #6c63ff);
+  padding: 20px;
+}
+
+/* Glassy Card */
+.auth-card {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border-radius: 20px;
+  padding: 40px 30px;
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+  color: #fff;
+}
+
+.auth-card h2 {
+  margin-bottom: 30px;
+  font-size: 2rem;
+}
+
+.auth-card input {
+  width: 100%;
+  padding: 12px 15px;
+  margin-bottom: 20px;
+  border: none;
+  border-radius: 50px;
+  outline: none;
+  background: rgba(255, 255, 255, 0.2);
+  color: #fff;
+  font-size: 1rem;
+}
+
+.auth-card input::placeholder {
+  color: #e0e0e0;
+}
+
+.auth-btn {
+  width: 100%;
+  padding: 12px;
+  background: #0b5ed7;
+  border: none;
+  border-radius: 50px;
+  color: #fff;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.auth-btn:hover {
+  background: #094bb5;
+  transform: translateY(-3px);
+}
+
+.auth-card p {
+  margin-top: 20px;
+  font-size: 0.9rem;
+}
