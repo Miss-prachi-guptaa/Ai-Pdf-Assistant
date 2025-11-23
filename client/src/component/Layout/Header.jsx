@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
+
 import "./Header.css";
 
 export const Header = () => {
@@ -28,7 +29,11 @@ export const Header = () => {
         </nav>
 
         <div className="header-actions">
-          <NavLink to="/login" className="login-btn">Login</NavLink>
+
+
+          <NavLink to="/logout" className="login-btn">Logout</NavLink>
+
+
           <NavLink to="/chat" className="cta-btn">Try Now</NavLink>
           <button className="menu-toggle" onClick={() => setMenuOpen(!menuOpen)}>
             {menuOpen ? "✖" : "☰"}

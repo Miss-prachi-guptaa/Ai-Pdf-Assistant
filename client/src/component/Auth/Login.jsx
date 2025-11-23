@@ -1,20 +1,55 @@
-import { useState } from "react";
+import { use, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
+import { useAuth } from "../../store/auth";
 
 export const Login = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [user, setUser] = useState({
+    email: "",
+    password: ""
+  });
+
   const navigate = useNavigate();
+  const handleInput = (e) => {
+    setUser({
+      ...user,
+      [e.target.name]: e.target.value
+    })
+  };
 
-  const handleLogin = (e) => {
+
+  // function received from context
+  const { storeTokenInLocalStorage } = useAuth();
+
+  const handleLogin = async (e) => {
     e.preventDefault();
+    console.log(user);
+    try {
+      const response = await fetch("http://localhost:5000/api/auth/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(user)
+      }
+      )
 
-    // Simple demo auth (replace with real API)
-    if (email === "user@example.com" && password === "123456") {
-      localStorage.setItem("isLoggedIn", "true");
-      navigate("/"); // redirect to dashboard/chat page
-    } else {
-      alert("Invalid credentials!");
+      if (response.ok) {
+        const data = await response.json();
+
+        // Now here we call the function to store token in local storage
+        storeTokenInLocalStorage(data.token);
+
+        setUser({
+          email: "",
+          password: ""
+        })
+        navigate("/");
+      }
+
+      const data = await response.json();
+      console.log("Login", data);
+    } catch (error) {
+      console.log("error during Login", error)
     }
   };
 
@@ -22,26 +57,32 @@ export const Login = () => {
     <div className="auth-container">
       <form className="auth-card" onSubmit={handleLogin}>
         <h2>Login</h2>
-
-        <input
-          type="email"
-          placeholder="Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-        />
-        <input
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-        />
-
+        <div>
+          <label htmlFor="email"></label>
+          <input
+            type="text"
+            name='email'
+            placeholder='email'
+            value={user.email}
+            onChange={handleInput}
+            required
+          />
+        </div>
+        <div>
+          <label htmlFor="password"></label>
+          <input
+            type="text"
+            name='password'
+            placeholder='enter password'
+            value={user.password}
+            onChange={handleInput}
+            required
+          />
+        </div>
         <button type="submit" className="auth-btn">Login</button>
 
         <p>
-          Don't have an account? <NavLink to="/signup">Sign Up</NavLink>
+          Don't have an account? <NavLink to="/register">Sign Up</NavLink>
         </p>
       </form>
     </div>

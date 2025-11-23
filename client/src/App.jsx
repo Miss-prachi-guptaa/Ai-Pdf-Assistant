@@ -33,11 +33,11 @@ function App() {
           element: <About />
         },
         {
-          path: "/register",
+          path: "/api/auth/register",
           element: <Register />
         },
         {
-          path: "login",
+          path: "/api/auth/login",
           element: <Login />
         }
       ]

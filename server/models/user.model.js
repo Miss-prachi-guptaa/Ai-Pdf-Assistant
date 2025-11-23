@@ -1,10 +1,12 @@
 import mongoose from "mongoose";
 
-// connection
-try {
-  await mongoose.connect("mongodb://127.0.0.1/murfAi");
-  mongoose.set("debug", true);
-} catch (error) {
-  console.error(error);
-  process.exit();
-}
+export const connectDB = async () => {
+  try {
+    await mongoose.connect("mongodb://127.0.0.1:27017/murfAi");
+
+    console.log("MongoDB Connected");
+  } catch (error) {
+    console.error(error);
+    process.exit(1);
+  }
+};
